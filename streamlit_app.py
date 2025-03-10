@@ -1,8 +1,6 @@
 # Import python packages
 import streamlit as st
 
-from snowflake.snowpark.context import get_active_session
-
 helpful_links = [
     "https://docs.streamlit.io",
     "https://docs.snowflake.com/en/developer-guide/streamlit/about-streamlit",
@@ -23,7 +21,8 @@ st.write("The name on your smoothies will be ", name_on_order)
 
 from snowflake.snowpark.functions import col
 
-session = get_active_session()
+cnx = st.connection("snowflake")
+session = cnx.session()
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
 #st.dataframe(data=my_dataframe, use_container_width=True)
 

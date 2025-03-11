@@ -13,7 +13,7 @@ helpful_links = [
 
 
 # Write directly to the app
-st.title(":cup_with_straw: Erna Customize Your Smoothie! :cup_with_straw:")
+st.title(":cup_with_straw: Customize Your Smoothie! :cup_with_straw:")
 st.write(
     f"""Choose the fruits you want in your custom Smoothie!
     """

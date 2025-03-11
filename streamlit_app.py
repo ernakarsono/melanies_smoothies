@@ -1,7 +1,6 @@
 # Import python packages
 import streamlit as st
-
-
+import requests
 
 helpful_links = [
     "https://docs.streamlit.io",
@@ -45,6 +44,8 @@ if ingredients_list:
     for fruit_chosen in ingredients_list:
         ingredients_string +=fruit_chosen + ' '        
     #st.write(ingredients_string)
+        smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+        st_df = st.dataframe(smoothiefroot_response.json(), use_container_width=True)
      
     my_insert_stmt = """ insert into smoothies.public.orders(NAME_ON_ORDER, INGREDIENTS) values('""" + name_on_order + """', '""" + ingredients_string + """')"""
     #st.write(my_insert_stmt)
@@ -56,10 +57,8 @@ if ingredients_list:
         session.sql(my_insert_stmt).collect()
         st.success('Your Smoothies is ordered', icon="✅")
 
-import requests
-smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
-#st.text(smoothiefroot_response.json())
-st_df = st.dataframe(smoothiefroot_response.json(), use_container_width=True)
+
+
 
         
    
